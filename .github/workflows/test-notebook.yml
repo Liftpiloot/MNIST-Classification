@@ -9,6 +9,9 @@ on:
 jobs:
   run-notebook:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow writing to repository contents (including creating releases)
+      id-token: write  # Allow issuing id-token if needed by the `gh` command
 
     steps:
       # Step 1: Checkout the repository
