@@ -1,0 +1,48 @@
+name: Test Jupyter Notebook
+
+# This workflow will run on any push to the master branch
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Run the Jupyter notebook and convert it to HTML
+      - name: Execute Jupyter Notebook and Convert to HTML
+        run: |
+          jupyter nbconvert --to html --execute --inplace MNIST-classification.ipynb
+
+      # Step 5: Upload the generated HTML as an artifact
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: notebook-report
+          path: notebook.html
+          
+      # Step 6: Fail the action if the notebook run fails
+      - name: Check for notebook errors
+        run: |
+          if grep -q 'Traceback' your_notebook.ipynb; then
+            echo "Notebook execution failed. Cannot push to master."
+            exit 1
+          fi
