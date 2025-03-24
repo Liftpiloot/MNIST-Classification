@@ -47,3 +47,11 @@ jobs:
             echo "Notebook execution failed. Cannot push to master."
             exit 1
           fi
+
+      - name: Create a GitHub Release and Attach HTML File
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically provides this token
+        run: |
+          # Use the current date as the release tag (e.g., "2025-03-24")
+          RELEASE_TAG=$(date +'%Y-%m-%d')  # Get the current date as a tag
+          gh release create $RELEASE_TAG MNIST-classification.html --title "MNIST Classification Report" --notes "This is the HTML report generated from running the MNIST classification notebook."
