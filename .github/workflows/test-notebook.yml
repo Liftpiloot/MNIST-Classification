@@ -26,6 +26,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install jupyter
 
       # Step 4: Run the Jupyter notebook and convert it to HTML
       - name: Execute Jupyter Notebook and Convert to HTML
