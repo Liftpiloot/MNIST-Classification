@@ -72,7 +72,6 @@ pure_eval==0.2.3
 pycparser==2.22
 PyQt6==6.7.1
 python-json-logger==3.3.0
-pywin32==310
 pywinpty==2.0.15
 PyYAML==6.0.2
 pyzmq==26.3.0
