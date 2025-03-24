@@ -31,14 +31,14 @@ jobs:
       # Step 4: Run the Jupyter notebook and convert it to HTML
       - name: Execute Jupyter Notebook and Convert to HTML
         run: |
-          jupyter nbconvert --to html --execute --inplace MNIST-classification.ipynb
+          jupyter nbconvert --to html --execute MNIST-classification.ipynb
 
       # Step 5: Upload the generated HTML as an artifact
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
           name: notebook-report
-          path: notebook.html
+          path: MNIST-classification.html
           
       # Step 6: Fail the action if the notebook run fails
       - name: Check for notebook errors
