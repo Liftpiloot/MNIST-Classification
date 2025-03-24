@@ -46,7 +46,7 @@ jobs:
       # Step 6: Fail the action if the notebook run fails
       - name: Check for notebook errors
         run: |
-          if grep -q 'Traceback' your_notebook.ipynb; then
+          if grep -q 'Traceback' MNIST-classification.ipynb; then
             echo "Notebook execution failed. Cannot push to master."
             exit 1
           fi
